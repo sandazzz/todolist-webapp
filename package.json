@@ -8,7 +8,7 @@
   },
   "jest": {
     "collectCoverage": true,
-    "coverageReporter": "json"
+    "coverageReporter": "json summary"
   },
   "author": "",
   "license": "ISC",
