@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporter": "json"
   },
   "author": "",
   "license": "ISC",

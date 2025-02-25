@@ -29,3 +29,27 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm test
+    - run: |
+          LINES=$(jq '.total.lines.pct' coverage/coverage-summary.json)
+          STATEMENTS=$(jq '.total.statements.pct' coverage/coverage-summary.json)
+          FUNCTIONS=$(jq '.total.functions.pct' coverage/coverage-summary.json)
+          BRANCHES=$(jq '.total.branches.pct' coverage/coverage-summary.json)
+
+    - name: Find Comment
+      uses: peter-evans/find-comment@v3
+      id: fc
+      with:
+        issue-number: ${{github.event.pull_request.number}}
+        comment-author : "github-actions[bot]"
+        body-includes: Jest Coverage Report
+
+    - name: Create or update coverage comment
+      if : github.event_name =='pull_request'
+      uses : peter-evans/create-or-update-comment@v4
+      with: 
+        comment-id: ${{ steps.fc.outputs.comment-id}}
+        issue-number : ${{ github.event.pull_request.number }}
+        body : |
+          ## Jest Coverage Report 
+          ${{ env.coverage}}
+        edit-mode : replace
