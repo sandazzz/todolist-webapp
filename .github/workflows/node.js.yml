@@ -39,7 +39,6 @@ jobs:
 
           echo "COVERAGE_REPORT=\
           ## Jest Coverage Report 📊
-          echo "COVERAGE_REPORT=\
           Lines: ${LINES}% \
           Statements: ${STATEMENTS}% \
           Functions: ${FUNCTIONS}% \
