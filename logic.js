@@ -53,7 +53,7 @@ function reducer(state = { todos: [] }, action) {
       console.log("[reducer] complete todo action");
       return completeTodo(state, action.payload.id);
     default:
-      console.log("[redcuer] default");
+      console.log("[reducer] default");
       return state;
   }
 }
@@ -87,3 +87,12 @@ function completeTodo(state, id) {
     }),
   };
 }
+
+module.exports = {
+  addTodo,
+  deleteTodo,
+  completeTodo,
+  addTodoAction,
+  deleteTodoAction,
+  completeTodoAction,
+};
