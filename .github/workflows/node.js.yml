@@ -39,10 +39,12 @@ jobs:
 
           echo "COVERAGE_REPORT=\
           ## Jest Coverage Report 📊
-          - **Lines:** $LINES%\
-          - **Statements:** $STATEMENTS%\
-          - **Functions:** $FUNCTIONS%\
-          - **Branches:** $BRANCHES%" >> $GITHUB_ENV
+          echo "COVERAGE_REPORT=\
+          Lines: ${LINES}% \
+          Statements: ${STATEMENTS}% \
+          Functions: ${FUNCTIONS}% \
+          Branches: ${BRANCHES}%" >> $GITHUB_ENV
+
 
       - name: Find Comment
         if: github.event_name == 'pull_request'
