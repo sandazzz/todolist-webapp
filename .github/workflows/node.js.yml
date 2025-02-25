@@ -37,12 +37,13 @@ jobs:
           FUNCTIONS=$(jq '.total.functions.pct' coverage/coverage-summary.json)
           BRANCHES=$(jq '.total.branches.pct' coverage/coverage-summary.json)
 
-          echo "COVERAGE_REPORT=\
-          ## Jest Coverage Report 📊
-          Lines: ${LINES}% \
-          Statements: ${STATEMENTS}% \
-          Functions: ${FUNCTIONS}% \
-          Branches: ${BRANCHES}%" >> $GITHUB_ENV
+            echo "COVERAGE_REPORT<<EOF" >> $GITHUB_ENV
+            echo "## Jest Coverage Report 📊" >> $GITHUB_ENV
+            echo "Lines: ${LINES}%" >> $GITHUB_ENV
+            echo "Statements: ${STATEMENTS}%" >> $GITHUB_ENV
+            echo "Functions: ${FUNCTIONS}%" >> $GITHUB_ENV
+            echo "Branches: ${BRANCHES}%" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
 
 
       - name: Find Comment
