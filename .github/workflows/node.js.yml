@@ -41,10 +41,11 @@ jobs:
           BRANCHES=$(jq '.total.branches.pct' coverage/coverage-summary.json)
 
     - name: Find Comment
+      if: github.event_name == 'pull_request'
       uses: peter-evans/find-comment@v3
       id: fc
       with:
-        issue-number: ${{github.event.pull_request.number}}
+        issue-number: ${{ github.event.pull_request.number }}
         comment-author : "github-actions[bot]"
         body-includes: Jest Coverage Report
 
@@ -56,5 +57,5 @@ jobs:
         issue-number : ${{ github.event.pull_request.number }}
         body : |
           ## Jest Coverage Report 
-          ${{ env.coverage}}
+          ${{ env.coverage }}
         edit-mode : replace
