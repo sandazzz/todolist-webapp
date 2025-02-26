@@ -65,3 +65,21 @@ jobs:
             ## Jest Coverage Report 
             ${{ env.COVERAGE_REPORT }}
           edit-mode: replace
+
+  deploy:
+    needs: build  
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
