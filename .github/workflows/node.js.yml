@@ -83,11 +83,13 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
+        with:
+             enablement: true
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: ./  # Déploie tout le projet, y compris index.html et les fichiers JS
+          path: ./  
 
       - name: Deploy to GitHub Pages
         id: deployment
