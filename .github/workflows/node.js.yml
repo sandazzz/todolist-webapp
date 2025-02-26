@@ -38,7 +38,6 @@ jobs:
           BRANCHES=$(jq '.total.branches.pct' coverage/coverage-summary.json)
 
             echo "COVERAGE_REPORT<<EOF" >> $GITHUB_ENV
-            echo "## Jest Coverage Report 📊" >> $GITHUB_ENV
             echo "Lines: ${LINES}%" >> $GITHUB_ENV
             echo "Statements: ${STATEMENTS}%" >> $GITHUB_ENV
             echo "Functions: ${FUNCTIONS}%" >> $GITHUB_ENV
@@ -62,7 +61,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id}}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## Jest Coverage Report 
+            ## Jest Coverage Report 📊
             ${{ env.COVERAGE_REPORT }}
           edit-mode: replace
 
